@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scb.dao.EmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.scb.pojo.Employee">
+    <id column="employee_id" jdbcType="VARCHAR" property="employeeId" />
+    <result column="employee_name" jdbcType="VARCHAR" property="employeeName" />
+    <result column="employee_nickname" jdbcType="VARCHAR" property="employeeNickname" />
+    <result column="employee_gender" jdbcType="VARCHAR" property="employeeGender" />
+    <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+    <result column="employee_status" jdbcType="VARCHAR" property="employeeStatus" />
+    <result column="employee_image" jdbcType="VARCHAR" property="employeeImage" />
+    <result column="employee_entrytime" jdbcType="TIMESTAMP" property="employeeEntrytime" />
+    <result column="team_id" jdbcType="VARCHAR" property="teamId" />
+    <result column="employee_phone" jdbcType="VARCHAR" property="employeePhone" />
+    <result column="employee_email" jdbcType="VARCHAR" property="employeeEmail" />
+    <result column="employee_landline" jdbcType="VARCHAR" property="employeeLandline" />
+    <result column="employee_updated_time" jdbcType="TIMESTAMP" property="employeeUpdatedTime" />
+    <result column="employee_created_user" jdbcType="VARCHAR" property="employeeCreatedUser" />
+    <result column="employee_created_time" jdbcType="TIMESTAMP" property="employeeCreatedTime" />
+    <result column="employee_updated_user" jdbcType="VARCHAR" property="employeeUpdatedUser" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    employee_id, employee_name, employee_nickname, employee_gender, role_id, employee_status, 
+    employee_image, employee_entrytime, team_id, employee_phone, employee_email, employee_landline, 
+    employee_updated_time, employee_created_user, employee_created_time, employee_updated_user
+  </sql>
+  <select id="selectByExample" parameterType="com.scb.pojo.EmployeeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from employee
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from employee
+    where employee_id = #{employeeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from employee
+    where employee_id = #{employeeId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scb.pojo.EmployeeExample">
+    delete from employee
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scb.pojo.Employee">
+    insert into employee (employee_id, employee_name, employee_nickname, 
+      employee_gender, role_id, employee_status, 
+      employee_image, employee_entrytime, team_id, 
+      employee_phone, employee_email, employee_landline, 
+      employee_updated_time, employee_created_user, 
+      employee_created_time, employee_updated_user
+      )
+    values (#{employeeId,jdbcType=VARCHAR}, #{employeeName,jdbcType=VARCHAR}, #{employeeNickname,jdbcType=VARCHAR}, 
+      #{employeeGender,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{employeeStatus,jdbcType=VARCHAR}, 
+      #{employeeImage,jdbcType=VARCHAR}, #{employeeEntrytime,jdbcType=TIMESTAMP}, #{teamId,jdbcType=VARCHAR}, 
+      #{employeePhone,jdbcType=VARCHAR}, #{employeeEmail,jdbcType=VARCHAR}, #{employeeLandline,jdbcType=VARCHAR}, 
+      #{employeeUpdatedTime,jdbcType=TIMESTAMP}, #{employeeCreatedUser,jdbcType=VARCHAR}, 
+      #{employeeCreatedTime,jdbcType=TIMESTAMP}, #{employeeUpdatedUser,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.scb.pojo.Employee">
+    insert into employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="employeeId != null">
+        employee_id,
+      </if>
+      <if test="employeeName != null">
+        employee_name,
+      </if>
+      <if test="employeeNickname != null">
+        employee_nickname,
+      </if>
+      <if test="employeeGender != null">
+        employee_gender,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="employeeStatus != null">
+        employee_status,
+      </if>
+      <if test="employeeImage != null">
+        employee_image,
+      </if>
+      <if test="employeeEntrytime != null">
+        employee_entrytime,
+      </if>
+      <if test="teamId != null">
+        team_id,
+      </if>
+      <if test="employeePhone != null">
+        employee_phone,
+      </if>
+      <if test="employeeEmail != null">
+        employee_email,
+      </if>
+      <if test="employeeLandline != null">
+        employee_landline,
+      </if>
+      <if test="employeeUpdatedTime != null">
+        employee_updated_time,
+      </if>
+      <if test="employeeCreatedUser != null">
+        employee_created_user,
+      </if>
+      <if test="employeeCreatedTime != null">
+        employee_created_time,
+      </if>
+      <if test="employeeUpdatedUser != null">
+        employee_updated_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="employeeId != null">
+        #{employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeName != null">
+        #{employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeNickname != null">
+        #{employeeNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeGender != null">
+        #{employeeGender,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeStatus != null">
+        #{employeeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeImage != null">
+        #{employeeImage,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeEntrytime != null">
+        #{employeeEntrytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="teamId != null">
+        #{teamId,jdbcType=VARCHAR},
+      </if>
+      <if test="employeePhone != null">
+        #{employeePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeEmail != null">
+        #{employeeEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeLandline != null">
+        #{employeeLandline,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeUpdatedTime != null">
+        #{employeeUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="employeeCreatedUser != null">
+        #{employeeCreatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeCreatedTime != null">
+        #{employeeCreatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="employeeUpdatedUser != null">
+        #{employeeUpdatedUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scb.pojo.EmployeeExample" resultType="java.lang.Long">
+    select count(*) from employee
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update employee
+    <set>
+      <if test="record.employeeId != null">
+        employee_id = #{record.employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeName != null">
+        employee_name = #{record.employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeNickname != null">
+        employee_nickname = #{record.employeeNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeGender != null">
+        employee_gender = #{record.employeeGender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleId != null">
+        role_id = #{record.roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeStatus != null">
+        employee_status = #{record.employeeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeImage != null">
+        employee_image = #{record.employeeImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeEntrytime != null">
+        employee_entrytime = #{record.employeeEntrytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.teamId != null">
+        team_id = #{record.teamId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeePhone != null">
+        employee_phone = #{record.employeePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeEmail != null">
+        employee_email = #{record.employeeEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeLandline != null">
+        employee_landline = #{record.employeeLandline,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeUpdatedTime != null">
+        employee_updated_time = #{record.employeeUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.employeeCreatedUser != null">
+        employee_created_user = #{record.employeeCreatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeCreatedTime != null">
+        employee_created_time = #{record.employeeCreatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.employeeUpdatedUser != null">
+        employee_updated_user = #{record.employeeUpdatedUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update employee
+    set employee_id = #{record.employeeId,jdbcType=VARCHAR},
+      employee_name = #{record.employeeName,jdbcType=VARCHAR},
+      employee_nickname = #{record.employeeNickname,jdbcType=VARCHAR},
+      employee_gender = #{record.employeeGender,jdbcType=VARCHAR},
+      role_id = #{record.roleId,jdbcType=VARCHAR},
+      employee_status = #{record.employeeStatus,jdbcType=VARCHAR},
+      employee_image = #{record.employeeImage,jdbcType=VARCHAR},
+      employee_entrytime = #{record.employeeEntrytime,jdbcType=TIMESTAMP},
+      team_id = #{record.teamId,jdbcType=VARCHAR},
+      employee_phone = #{record.employeePhone,jdbcType=VARCHAR},
+      employee_email = #{record.employeeEmail,jdbcType=VARCHAR},
+      employee_landline = #{record.employeeLandline,jdbcType=VARCHAR},
+      employee_updated_time = #{record.employeeUpdatedTime,jdbcType=TIMESTAMP},
+      employee_created_user = #{record.employeeCreatedUser,jdbcType=VARCHAR},
+      employee_created_time = #{record.employeeCreatedTime,jdbcType=TIMESTAMP},
+      employee_updated_user = #{record.employeeUpdatedUser,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scb.pojo.Employee">
+    update employee
+    <set>
+      <if test="employeeName != null">
+        employee_name = #{employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeNickname != null">
+        employee_nickname = #{employeeNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeGender != null">
+        employee_gender = #{employeeGender,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeStatus != null">
+        employee_status = #{employeeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeImage != null">
+        employee_image = #{employeeImage,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeEntrytime != null">
+        employee_entrytime = #{employeeEntrytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="teamId != null">
+        team_id = #{teamId,jdbcType=VARCHAR},
+      </if>
+      <if test="employeePhone != null">
+        employee_phone = #{employeePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeEmail != null">
+        employee_email = #{employeeEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeLandline != null">
+        employee_landline = #{employeeLandline,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeUpdatedTime != null">
+        employee_updated_time = #{employeeUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="employeeCreatedUser != null">
+        employee_created_user = #{employeeCreatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeCreatedTime != null">
+        employee_created_time = #{employeeCreatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="employeeUpdatedUser != null">
+        employee_updated_user = #{employeeUpdatedUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where employee_id = #{employeeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scb.pojo.Employee">
+    update employee
+    set employee_name = #{employeeName,jdbcType=VARCHAR},
+      employee_nickname = #{employeeNickname,jdbcType=VARCHAR},
+      employee_gender = #{employeeGender,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=VARCHAR},
+      employee_status = #{employeeStatus,jdbcType=VARCHAR},
+      employee_image = #{employeeImage,jdbcType=VARCHAR},
+      employee_entrytime = #{employeeEntrytime,jdbcType=TIMESTAMP},
+      team_id = #{teamId,jdbcType=VARCHAR},
+      employee_phone = #{employeePhone,jdbcType=VARCHAR},
+      employee_email = #{employeeEmail,jdbcType=VARCHAR},
+      employee_landline = #{employeeLandline,jdbcType=VARCHAR},
+      employee_updated_time = #{employeeUpdatedTime,jdbcType=TIMESTAMP},
+      employee_created_user = #{employeeCreatedUser,jdbcType=VARCHAR},
+      employee_created_time = #{employeeCreatedTime,jdbcType=TIMESTAMP},
+      employee_updated_user = #{employeeUpdatedUser,jdbcType=VARCHAR}
+    where employee_id = #{employeeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

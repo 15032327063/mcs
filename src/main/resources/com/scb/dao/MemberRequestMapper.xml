@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scb.dao.MemberRequestMapper">
+  <resultMap id="BaseResultMap" type="com.scb.pojo.MemberRequest">
+    <id column="member_request_id" jdbcType="VARCHAR" property="memberRequestId" />
+    <result column="member_request_time" jdbcType="TIMESTAMP" property="memberRequestTime" />
+    <result column="member_request_num" jdbcType="INTEGER" property="memberRequestNum" />
+    <result column="member_request_start" jdbcType="TIMESTAMP" property="memberRequestStart" />
+    <result column="member_request_end" jdbcType="TIMESTAMP" property="memberRequestEnd" />
+    <result column="member_request_status" jdbcType="VARCHAR" property="memberRequestStatus" />
+    <result column="employee_id" jdbcType="VARCHAR" property="employeeId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    member_request_id, member_request_time, member_request_num, member_request_start, 
+    member_request_end, member_request_status, employee_id
+  </sql>
+  <select id="selectByExample" parameterType="com.scb.pojo.MemberRequestExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from member_request
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from member_request
+    where member_request_id = #{memberRequestId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from member_request
+    where member_request_id = #{memberRequestId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scb.pojo.MemberRequestExample">
+    delete from member_request
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scb.pojo.MemberRequest">
+    insert into member_request (member_request_id, member_request_time, 
+      member_request_num, member_request_start, 
+      member_request_end, member_request_status, 
+      employee_id)
+    values (#{memberRequestId,jdbcType=VARCHAR}, #{memberRequestTime,jdbcType=TIMESTAMP}, 
+      #{memberRequestNum,jdbcType=INTEGER}, #{memberRequestStart,jdbcType=TIMESTAMP}, 
+      #{memberRequestEnd,jdbcType=TIMESTAMP}, #{memberRequestStatus,jdbcType=VARCHAR}, 
+      #{employeeId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scb.pojo.MemberRequest">
+    insert into member_request
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="memberRequestId != null">
+        member_request_id,
+      </if>
+      <if test="memberRequestTime != null">
+        member_request_time,
+      </if>
+      <if test="memberRequestNum != null">
+        member_request_num,
+      </if>
+      <if test="memberRequestStart != null">
+        member_request_start,
+      </if>
+      <if test="memberRequestEnd != null">
+        member_request_end,
+      </if>
+      <if test="memberRequestStatus != null">
+        member_request_status,
+      </if>
+      <if test="employeeId != null">
+        employee_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="memberRequestId != null">
+        #{memberRequestId,jdbcType=VARCHAR},
+      </if>
+      <if test="memberRequestTime != null">
+        #{memberRequestTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberRequestNum != null">
+        #{memberRequestNum,jdbcType=INTEGER},
+      </if>
+      <if test="memberRequestStart != null">
+        #{memberRequestStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberRequestEnd != null">
+        #{memberRequestEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberRequestStatus != null">
+        #{memberRequestStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeId != null">
+        #{employeeId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scb.pojo.MemberRequestExample" resultType="java.lang.Long">
+    select count(*) from member_request
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update member_request
+    <set>
+      <if test="record.memberRequestId != null">
+        member_request_id = #{record.memberRequestId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberRequestTime != null">
+        member_request_time = #{record.memberRequestTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.memberRequestNum != null">
+        member_request_num = #{record.memberRequestNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.memberRequestStart != null">
+        member_request_start = #{record.memberRequestStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.memberRequestEnd != null">
+        member_request_end = #{record.memberRequestEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.memberRequestStatus != null">
+        member_request_status = #{record.memberRequestStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeId != null">
+        employee_id = #{record.employeeId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update member_request
+    set member_request_id = #{record.memberRequestId,jdbcType=VARCHAR},
+      member_request_time = #{record.memberRequestTime,jdbcType=TIMESTAMP},
+      member_request_num = #{record.memberRequestNum,jdbcType=INTEGER},
+      member_request_start = #{record.memberRequestStart,jdbcType=TIMESTAMP},
+      member_request_end = #{record.memberRequestEnd,jdbcType=TIMESTAMP},
+      member_request_status = #{record.memberRequestStatus,jdbcType=VARCHAR},
+      employee_id = #{record.employeeId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scb.pojo.MemberRequest">
+    update member_request
+    <set>
+      <if test="memberRequestTime != null">
+        member_request_time = #{memberRequestTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberRequestNum != null">
+        member_request_num = #{memberRequestNum,jdbcType=INTEGER},
+      </if>
+      <if test="memberRequestStart != null">
+        member_request_start = #{memberRequestStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberRequestEnd != null">
+        member_request_end = #{memberRequestEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberRequestStatus != null">
+        member_request_status = #{memberRequestStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeId != null">
+        employee_id = #{employeeId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where member_request_id = #{memberRequestId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scb.pojo.MemberRequest">
+    update member_request
+    set member_request_time = #{memberRequestTime,jdbcType=TIMESTAMP},
+      member_request_num = #{memberRequestNum,jdbcType=INTEGER},
+      member_request_start = #{memberRequestStart,jdbcType=TIMESTAMP},
+      member_request_end = #{memberRequestEnd,jdbcType=TIMESTAMP},
+      member_request_status = #{memberRequestStatus,jdbcType=VARCHAR},
+      employee_id = #{employeeId,jdbcType=VARCHAR}
+    where member_request_id = #{memberRequestId,jdbcType=VARCHAR}
+  </update>
+</mapper>

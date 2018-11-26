@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scb.dao.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.scb.pojo.Menu">
+    <id column="menu_id" jdbcType="VARCHAR" property="menuId" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="menu_updated_time" jdbcType="TIMESTAMP" property="menuUpdatedTime" />
+    <result column="menu_created_user" jdbcType="VARCHAR" property="menuCreatedUser" />
+    <result column="menu_created_time" jdbcType="TIMESTAMP" property="menuCreatedTime" />
+    <result column="menu_updated_user" jdbcType="VARCHAR" property="menuUpdatedUser" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    menu_id, menu_name, menu_updated_time, menu_created_user, menu_created_time, menu_updated_user
+  </sql>
+  <select id="selectByExample" parameterType="com.scb.pojo.MenuExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from menu
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from menu
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from menu
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scb.pojo.MenuExample">
+    delete from menu
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scb.pojo.Menu">
+    insert into menu (menu_id, menu_name, menu_updated_time, 
+      menu_created_user, menu_created_time, menu_updated_user
+      )
+    values (#{menuId,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, #{menuUpdatedTime,jdbcType=TIMESTAMP}, 
+      #{menuCreatedUser,jdbcType=VARCHAR}, #{menuCreatedTime,jdbcType=TIMESTAMP}, #{menuUpdatedUser,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.scb.pojo.Menu">
+    insert into menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="menuId != null">
+        menu_id,
+      </if>
+      <if test="menuName != null">
+        menu_name,
+      </if>
+      <if test="menuUpdatedTime != null">
+        menu_updated_time,
+      </if>
+      <if test="menuCreatedUser != null">
+        menu_created_user,
+      </if>
+      <if test="menuCreatedTime != null">
+        menu_created_time,
+      </if>
+      <if test="menuUpdatedUser != null">
+        menu_updated_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="menuId != null">
+        #{menuId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null">
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUpdatedTime != null">
+        #{menuUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="menuCreatedUser != null">
+        #{menuCreatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="menuCreatedTime != null">
+        #{menuCreatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="menuUpdatedUser != null">
+        #{menuUpdatedUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scb.pojo.MenuExample" resultType="java.lang.Long">
+    select count(*) from menu
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update menu
+    <set>
+      <if test="record.menuId != null">
+        menu_id = #{record.menuId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menuName != null">
+        menu_name = #{record.menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menuUpdatedTime != null">
+        menu_updated_time = #{record.menuUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.menuCreatedUser != null">
+        menu_created_user = #{record.menuCreatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.menuCreatedTime != null">
+        menu_created_time = #{record.menuCreatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.menuUpdatedUser != null">
+        menu_updated_user = #{record.menuUpdatedUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update menu
+    set menu_id = #{record.menuId,jdbcType=VARCHAR},
+      menu_name = #{record.menuName,jdbcType=VARCHAR},
+      menu_updated_time = #{record.menuUpdatedTime,jdbcType=TIMESTAMP},
+      menu_created_user = #{record.menuCreatedUser,jdbcType=VARCHAR},
+      menu_created_time = #{record.menuCreatedTime,jdbcType=TIMESTAMP},
+      menu_updated_user = #{record.menuUpdatedUser,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scb.pojo.Menu">
+    update menu
+    <set>
+      <if test="menuName != null">
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUpdatedTime != null">
+        menu_updated_time = #{menuUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="menuCreatedUser != null">
+        menu_created_user = #{menuCreatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="menuCreatedTime != null">
+        menu_created_time = #{menuCreatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="menuUpdatedUser != null">
+        menu_updated_user = #{menuUpdatedUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scb.pojo.Menu">
+    update menu
+    set menu_name = #{menuName,jdbcType=VARCHAR},
+      menu_updated_time = #{menuUpdatedTime,jdbcType=TIMESTAMP},
+      menu_created_user = #{menuCreatedUser,jdbcType=VARCHAR},
+      menu_created_time = #{menuCreatedTime,jdbcType=TIMESTAMP},
+      menu_updated_user = #{menuUpdatedUser,jdbcType=VARCHAR}
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </update>
+</mapper>

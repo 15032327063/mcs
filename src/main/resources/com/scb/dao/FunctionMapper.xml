@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scb.dao.FunctionMapper">
+  <resultMap id="BaseResultMap" type="com.scb.pojo.Function">
+    <id column="function_id" jdbcType="VARCHAR" property="functionId" />
+    <result column="function_name" jdbcType="VARCHAR" property="functionName" />
+    <result column="function_updated_time" jdbcType="TIMESTAMP" property="functionUpdatedTime" />
+    <result column="function_created_user" jdbcType="VARCHAR" property="functionCreatedUser" />
+    <result column="function_created_time" jdbcType="TIMESTAMP" property="functionCreatedTime" />
+    <result column="function_updated_user" jdbcType="VARCHAR" property="functionUpdatedUser" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    function_id, function_name, function_updated_time, function_created_user, function_created_time, 
+    function_updated_user
+  </sql>
+  <select id="selectByExample" parameterType="com.scb.pojo.FunctionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from function
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from function
+    where function_id = #{functionId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from function
+    where function_id = #{functionId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scb.pojo.FunctionExample">
+    delete from function
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scb.pojo.Function">
+    insert into function (function_id, function_name, function_updated_time, 
+      function_created_user, function_created_time, 
+      function_updated_user)
+    values (#{functionId,jdbcType=VARCHAR}, #{functionName,jdbcType=VARCHAR}, #{functionUpdatedTime,jdbcType=TIMESTAMP}, 
+      #{functionCreatedUser,jdbcType=VARCHAR}, #{functionCreatedTime,jdbcType=TIMESTAMP}, 
+      #{functionUpdatedUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scb.pojo.Function">
+    insert into function
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="functionId != null">
+        function_id,
+      </if>
+      <if test="functionName != null">
+        function_name,
+      </if>
+      <if test="functionUpdatedTime != null">
+        function_updated_time,
+      </if>
+      <if test="functionCreatedUser != null">
+        function_created_user,
+      </if>
+      <if test="functionCreatedTime != null">
+        function_created_time,
+      </if>
+      <if test="functionUpdatedUser != null">
+        function_updated_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="functionId != null">
+        #{functionId,jdbcType=VARCHAR},
+      </if>
+      <if test="functionName != null">
+        #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="functionUpdatedTime != null">
+        #{functionUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="functionCreatedUser != null">
+        #{functionCreatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="functionCreatedTime != null">
+        #{functionCreatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="functionUpdatedUser != null">
+        #{functionUpdatedUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scb.pojo.FunctionExample" resultType="java.lang.Long">
+    select count(*) from function
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update function
+    <set>
+      <if test="record.functionId != null">
+        function_id = #{record.functionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.functionName != null">
+        function_name = #{record.functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.functionUpdatedTime != null">
+        function_updated_time = #{record.functionUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.functionCreatedUser != null">
+        function_created_user = #{record.functionCreatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.functionCreatedTime != null">
+        function_created_time = #{record.functionCreatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.functionUpdatedUser != null">
+        function_updated_user = #{record.functionUpdatedUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update function
+    set function_id = #{record.functionId,jdbcType=VARCHAR},
+      function_name = #{record.functionName,jdbcType=VARCHAR},
+      function_updated_time = #{record.functionUpdatedTime,jdbcType=TIMESTAMP},
+      function_created_user = #{record.functionCreatedUser,jdbcType=VARCHAR},
+      function_created_time = #{record.functionCreatedTime,jdbcType=TIMESTAMP},
+      function_updated_user = #{record.functionUpdatedUser,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scb.pojo.Function">
+    update function
+    <set>
+      <if test="functionName != null">
+        function_name = #{functionName,jdbcType=VARCHAR},
+      </if>
+      <if test="functionUpdatedTime != null">
+        function_updated_time = #{functionUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="functionCreatedUser != null">
+        function_created_user = #{functionCreatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="functionCreatedTime != null">
+        function_created_time = #{functionCreatedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="functionUpdatedUser != null">
+        function_updated_user = #{functionUpdatedUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where function_id = #{functionId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scb.pojo.Function">
+    update function
+    set function_name = #{functionName,jdbcType=VARCHAR},
+      function_updated_time = #{functionUpdatedTime,jdbcType=TIMESTAMP},
+      function_created_user = #{functionCreatedUser,jdbcType=VARCHAR},
+      function_created_time = #{functionCreatedTime,jdbcType=TIMESTAMP},
+      function_updated_user = #{functionUpdatedUser,jdbcType=VARCHAR}
+    where function_id = #{functionId,jdbcType=VARCHAR}
+  </update>
+</mapper>

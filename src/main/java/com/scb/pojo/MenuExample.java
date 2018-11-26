@@ -1,0 +1,663 @@
+package com.scb.pojo;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class MenuExample {
+    /**
+     * menu
+     */
+    protected String orderByClause;
+
+    /**
+     * menu
+     */
+    protected boolean distinct;
+
+    /**
+     * menu
+     */
+    protected List<Criteria> oredCriteria;
+
+    /**
+     *
+     * @mbg.generated 2018-11-25
+     */
+    public MenuExample() {
+        oredCriteria = new ArrayList<Criteria>();
+    }
+
+    /**
+     *
+     * @mbg.generated 2018-11-25
+     */
+    public void setOrderByClause(String orderByClause) {
+        this.orderByClause = orderByClause;
+    }
+
+    /**
+     *
+     * @mbg.generated 2018-11-25
+     */
+    public String getOrderByClause() {
+        return orderByClause;
+    }
+
+    /**
+     *
+     * @mbg.generated 2018-11-25
+     */
+    public void setDistinct(boolean distinct) {
+        this.distinct = distinct;
+    }
+
+    /**
+     *
+     * @mbg.generated 2018-11-25
+     */
+    public boolean isDistinct() {
+        return distinct;
+    }
+
+    /**
+     *
+     * @mbg.generated 2018-11-25
+     */
+    public List<Criteria> getOredCriteria() {
+        return oredCriteria;
+    }
+
+    /**
+     *
+     * @mbg.generated 2018-11-25
+     */
+    public void or(Criteria criteria) {
+        oredCriteria.add(criteria);
+    }
+
+    /**
+     *
+     * @mbg.generated 2018-11-25
+     */
+    public Criteria or() {
+        Criteria criteria = createCriteriaInternal();
+        oredCriteria.add(criteria);
+        return criteria;
+    }
+
+    /**
+     *
+     * @mbg.generated 2018-11-25
+     */
+    public Criteria createCriteria() {
+        Criteria criteria = createCriteriaInternal();
+        if (oredCriteria.size() == 0) {
+            oredCriteria.add(criteria);
+        }
+        return criteria;
+    }
+
+    /**
+     *
+     * @mbg.generated 2018-11-25
+     */
+    protected Criteria createCriteriaInternal() {
+        Criteria criteria = new Criteria();
+        return criteria;
+    }
+
+    /**
+     *
+     * @mbg.generated 2018-11-25
+     */
+    public void clear() {
+        oredCriteria.clear();
+        orderByClause = null;
+        distinct = false;
+    }
+
+    /**
+     * menu 2018-11-25
+     */
+    protected abstract static class GeneratedCriteria {
+        protected List<Criterion> criteria;
+
+        protected GeneratedCriteria() {
+            super();
+            criteria = new ArrayList<Criterion>();
+        }
+
+        public boolean isValid() {
+            return criteria.size() > 0;
+        }
+
+        public List<Criterion> getAllCriteria() {
+            return criteria;
+        }
+
+        public List<Criterion> getCriteria() {
+            return criteria;
+        }
+
+        protected void addCriterion(String condition) {
+            if (condition == null) {
+                throw new RuntimeException("Value for condition cannot be null");
+            }
+            criteria.add(new Criterion(condition));
+        }
+
+        protected void addCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            criteria.add(new Criterion(condition, value));
+        }
+
+        protected void addCriterion(String condition, Object value1, Object value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            criteria.add(new Criterion(condition, value1, value2));
+        }
+
+        public Criteria andMenuIdIsNull() {
+            addCriterion("menu_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuIdIsNotNull() {
+            addCriterion("menu_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuIdEqualTo(String value) {
+            addCriterion("menu_id =", value, "menuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuIdNotEqualTo(String value) {
+            addCriterion("menu_id <>", value, "menuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuIdGreaterThan(String value) {
+            addCriterion("menu_id >", value, "menuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuIdGreaterThanOrEqualTo(String value) {
+            addCriterion("menu_id >=", value, "menuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuIdLessThan(String value) {
+            addCriterion("menu_id <", value, "menuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuIdLessThanOrEqualTo(String value) {
+            addCriterion("menu_id <=", value, "menuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuIdLike(String value) {
+            addCriterion("menu_id like", value, "menuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuIdNotLike(String value) {
+            addCriterion("menu_id not like", value, "menuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuIdIn(List<String> values) {
+            addCriterion("menu_id in", values, "menuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuIdNotIn(List<String> values) {
+            addCriterion("menu_id not in", values, "menuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuIdBetween(String value1, String value2) {
+            addCriterion("menu_id between", value1, value2, "menuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuIdNotBetween(String value1, String value2) {
+            addCriterion("menu_id not between", value1, value2, "menuId");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuNameIsNull() {
+            addCriterion("menu_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuNameIsNotNull() {
+            addCriterion("menu_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuNameEqualTo(String value) {
+            addCriterion("menu_name =", value, "menuName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuNameNotEqualTo(String value) {
+            addCriterion("menu_name <>", value, "menuName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuNameGreaterThan(String value) {
+            addCriterion("menu_name >", value, "menuName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuNameGreaterThanOrEqualTo(String value) {
+            addCriterion("menu_name >=", value, "menuName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuNameLessThan(String value) {
+            addCriterion("menu_name <", value, "menuName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuNameLessThanOrEqualTo(String value) {
+            addCriterion("menu_name <=", value, "menuName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuNameLike(String value) {
+            addCriterion("menu_name like", value, "menuName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuNameNotLike(String value) {
+            addCriterion("menu_name not like", value, "menuName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuNameIn(List<String> values) {
+            addCriterion("menu_name in", values, "menuName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuNameNotIn(List<String> values) {
+            addCriterion("menu_name not in", values, "menuName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuNameBetween(String value1, String value2) {
+            addCriterion("menu_name between", value1, value2, "menuName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuNameNotBetween(String value1, String value2) {
+            addCriterion("menu_name not between", value1, value2, "menuName");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedTimeIsNull() {
+            addCriterion("menu_updated_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedTimeIsNotNull() {
+            addCriterion("menu_updated_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedTimeEqualTo(Date value) {
+            addCriterion("menu_updated_time =", value, "menuUpdatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedTimeNotEqualTo(Date value) {
+            addCriterion("menu_updated_time <>", value, "menuUpdatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedTimeGreaterThan(Date value) {
+            addCriterion("menu_updated_time >", value, "menuUpdatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("menu_updated_time >=", value, "menuUpdatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedTimeLessThan(Date value) {
+            addCriterion("menu_updated_time <", value, "menuUpdatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedTimeLessThanOrEqualTo(Date value) {
+            addCriterion("menu_updated_time <=", value, "menuUpdatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedTimeIn(List<Date> values) {
+            addCriterion("menu_updated_time in", values, "menuUpdatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedTimeNotIn(List<Date> values) {
+            addCriterion("menu_updated_time not in", values, "menuUpdatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedTimeBetween(Date value1, Date value2) {
+            addCriterion("menu_updated_time between", value1, value2, "menuUpdatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedTimeNotBetween(Date value1, Date value2) {
+            addCriterion("menu_updated_time not between", value1, value2, "menuUpdatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedUserIsNull() {
+            addCriterion("menu_created_user is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedUserIsNotNull() {
+            addCriterion("menu_created_user is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedUserEqualTo(String value) {
+            addCriterion("menu_created_user =", value, "menuCreatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedUserNotEqualTo(String value) {
+            addCriterion("menu_created_user <>", value, "menuCreatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedUserGreaterThan(String value) {
+            addCriterion("menu_created_user >", value, "menuCreatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedUserGreaterThanOrEqualTo(String value) {
+            addCriterion("menu_created_user >=", value, "menuCreatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedUserLessThan(String value) {
+            addCriterion("menu_created_user <", value, "menuCreatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedUserLessThanOrEqualTo(String value) {
+            addCriterion("menu_created_user <=", value, "menuCreatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedUserLike(String value) {
+            addCriterion("menu_created_user like", value, "menuCreatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedUserNotLike(String value) {
+            addCriterion("menu_created_user not like", value, "menuCreatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedUserIn(List<String> values) {
+            addCriterion("menu_created_user in", values, "menuCreatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedUserNotIn(List<String> values) {
+            addCriterion("menu_created_user not in", values, "menuCreatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedUserBetween(String value1, String value2) {
+            addCriterion("menu_created_user between", value1, value2, "menuCreatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedUserNotBetween(String value1, String value2) {
+            addCriterion("menu_created_user not between", value1, value2, "menuCreatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedTimeIsNull() {
+            addCriterion("menu_created_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedTimeIsNotNull() {
+            addCriterion("menu_created_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedTimeEqualTo(Date value) {
+            addCriterion("menu_created_time =", value, "menuCreatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedTimeNotEqualTo(Date value) {
+            addCriterion("menu_created_time <>", value, "menuCreatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedTimeGreaterThan(Date value) {
+            addCriterion("menu_created_time >", value, "menuCreatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("menu_created_time >=", value, "menuCreatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedTimeLessThan(Date value) {
+            addCriterion("menu_created_time <", value, "menuCreatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedTimeLessThanOrEqualTo(Date value) {
+            addCriterion("menu_created_time <=", value, "menuCreatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedTimeIn(List<Date> values) {
+            addCriterion("menu_created_time in", values, "menuCreatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedTimeNotIn(List<Date> values) {
+            addCriterion("menu_created_time not in", values, "menuCreatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedTimeBetween(Date value1, Date value2) {
+            addCriterion("menu_created_time between", value1, value2, "menuCreatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuCreatedTimeNotBetween(Date value1, Date value2) {
+            addCriterion("menu_created_time not between", value1, value2, "menuCreatedTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedUserIsNull() {
+            addCriterion("menu_updated_user is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedUserIsNotNull() {
+            addCriterion("menu_updated_user is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedUserEqualTo(String value) {
+            addCriterion("menu_updated_user =", value, "menuUpdatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedUserNotEqualTo(String value) {
+            addCriterion("menu_updated_user <>", value, "menuUpdatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedUserGreaterThan(String value) {
+            addCriterion("menu_updated_user >", value, "menuUpdatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedUserGreaterThanOrEqualTo(String value) {
+            addCriterion("menu_updated_user >=", value, "menuUpdatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedUserLessThan(String value) {
+            addCriterion("menu_updated_user <", value, "menuUpdatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedUserLessThanOrEqualTo(String value) {
+            addCriterion("menu_updated_user <=", value, "menuUpdatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedUserLike(String value) {
+            addCriterion("menu_updated_user like", value, "menuUpdatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedUserNotLike(String value) {
+            addCriterion("menu_updated_user not like", value, "menuUpdatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedUserIn(List<String> values) {
+            addCriterion("menu_updated_user in", values, "menuUpdatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedUserNotIn(List<String> values) {
+            addCriterion("menu_updated_user not in", values, "menuUpdatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedUserBetween(String value1, String value2) {
+            addCriterion("menu_updated_user between", value1, value2, "menuUpdatedUser");
+            return (Criteria) this;
+        }
+
+        public Criteria andMenuUpdatedUserNotBetween(String value1, String value2) {
+            addCriterion("menu_updated_user not between", value1, value2, "menuUpdatedUser");
+            return (Criteria) this;
+        }
+    }
+
+    /**
+     * menu
+     */
+    public static class Criteria extends GeneratedCriteria {
+
+        protected Criteria() {
+            super();
+        }
+    }
+
+    /**
+     * menu 2018-11-25
+     */
+    public static class Criterion {
+        private String condition;
+
+        private Object value;
+
+        private Object secondValue;
+
+        private boolean noValue;
+
+        private boolean singleValue;
+
+        private boolean betweenValue;
+
+        private boolean listValue;
+
+        private String typeHandler;
+
+        public String getCondition() {
+            return condition;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
+        public Object getSecondValue() {
+            return secondValue;
+        }
+
+        public boolean isNoValue() {
+            return noValue;
+        }
+
+        public boolean isSingleValue() {
+            return singleValue;
+        }
+
+        public boolean isBetweenValue() {
+            return betweenValue;
+        }
+
+        public boolean isListValue() {
+            return listValue;
+        }
+
+        public String getTypeHandler() {
+            return typeHandler;
+        }
+
+        protected Criterion(String condition) {
+            super();
+            this.condition = condition;
+            this.typeHandler = null;
+            this.noValue = true;
+        }
+
+        protected Criterion(String condition, Object value, String typeHandler) {
+            super();
+            this.condition = condition;
+            this.value = value;
+            this.typeHandler = typeHandler;
+            if (value instanceof List<?>) {
+                this.listValue = true;
+            } else {
+                this.singleValue = true;
+            }
+        }
+
+        protected Criterion(String condition, Object value) {
+            this(condition, value, null);
+        }
+
+        protected Criterion(String condition, Object value, Object secondValue, String typeHandler) {
+            super();
+            this.condition = condition;
+            this.value = value;
+            this.secondValue = secondValue;
+            this.typeHandler = typeHandler;
+            this.betweenValue = true;
+        }
+
+        protected Criterion(String condition, Object value, Object secondValue) {
+            this(condition, value, secondValue, null);
+        }
+    }
+}

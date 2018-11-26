@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scb.dao.AccountMapper">
+  <resultMap id="BaseResultMap" type="com.scb.pojo.Account">
+    <id column="account_id" jdbcType="VARCHAR" property="accountId" />
+    <result column="account_password" jdbcType="VARCHAR" property="accountPassword" />
+    <result column="account_updated_user" jdbcType="VARCHAR" property="accountUpdatedUser" />
+    <result column="account_updated_time" jdbcType="TIMESTAMP" property="accountUpdatedTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    account_id, account_password, account_updated_user, account_updated_time
+  </sql>
+  <select id="selectByExample" parameterType="com.scb.pojo.AccountExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from account
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from account
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scb.pojo.AccountExample">
+    delete from account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scb.pojo.Account">
+    insert into account (account_id, account_password, account_updated_user, 
+      account_updated_time)
+    values (#{accountId,jdbcType=VARCHAR}, #{accountPassword,jdbcType=VARCHAR}, #{accountUpdatedUser,jdbcType=VARCHAR}, 
+      #{accountUpdatedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scb.pojo.Account">
+    insert into account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="accountPassword != null">
+        account_password,
+      </if>
+      <if test="accountUpdatedUser != null">
+        account_updated_user,
+      </if>
+      <if test="accountUpdatedTime != null">
+        account_updated_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="accountId != null">
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="accountPassword != null">
+        #{accountPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="accountUpdatedUser != null">
+        #{accountUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="accountUpdatedTime != null">
+        #{accountUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scb.pojo.AccountExample" resultType="java.lang.Long">
+    select count(*) from account
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update account
+    <set>
+      <if test="record.accountId != null">
+        account_id = #{record.accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountPassword != null">
+        account_password = #{record.accountPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountUpdatedUser != null">
+        account_updated_user = #{record.accountUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountUpdatedTime != null">
+        account_updated_time = #{record.accountUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update account
+    set account_id = #{record.accountId,jdbcType=VARCHAR},
+      account_password = #{record.accountPassword,jdbcType=VARCHAR},
+      account_updated_user = #{record.accountUpdatedUser,jdbcType=VARCHAR},
+      account_updated_time = #{record.accountUpdatedTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scb.pojo.Account">
+    update account
+    <set>
+      <if test="accountPassword != null">
+        account_password = #{accountPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="accountUpdatedUser != null">
+        account_updated_user = #{accountUpdatedUser,jdbcType=VARCHAR},
+      </if>
+      <if test="accountUpdatedTime != null">
+        account_updated_time = #{accountUpdatedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scb.pojo.Account">
+    update account
+    set account_password = #{accountPassword,jdbcType=VARCHAR},
+      account_updated_user = #{accountUpdatedUser,jdbcType=VARCHAR},
+      account_updated_time = #{accountUpdatedTime,jdbcType=TIMESTAMP}
+    where account_id = #{accountId,jdbcType=VARCHAR}
+  </update>
+</mapper>

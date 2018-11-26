@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scb.dao.McRecordMapper">
+  <resultMap id="BaseResultMap" type="com.scb.pojo.McRecord">
+    <id column="mc_record_id" jdbcType="VARCHAR" property="mcRecordId" />
+    <result column="mc_record_date" jdbcType="TIMESTAMP" property="mcRecordDate" />
+    <result column="mc_record_sumnum" jdbcType="INTEGER" property="mcRecordSumnum" />
+    <result column="mc_record_remain" jdbcType="INTEGER" property="mcRecordRemain" />
+    <result column="team_id" jdbcType="VARCHAR" property="teamId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    mc_record_id, mc_record_date, mc_record_sumnum, mc_record_remain, team_id
+  </sql>
+  <select id="selectByExample" parameterType="com.scb.pojo.McRecordExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from mc_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mc_record
+    where mc_record_id = #{mcRecordId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from mc_record
+    where mc_record_id = #{mcRecordId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.scb.pojo.McRecordExample">
+    delete from mc_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.scb.pojo.McRecord">
+    insert into mc_record (mc_record_id, mc_record_date, mc_record_sumnum, 
+      mc_record_remain, team_id)
+    values (#{mcRecordId,jdbcType=VARCHAR}, #{mcRecordDate,jdbcType=TIMESTAMP}, #{mcRecordSumnum,jdbcType=INTEGER}, 
+      #{mcRecordRemain,jdbcType=INTEGER}, #{teamId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.scb.pojo.McRecord">
+    insert into mc_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mcRecordId != null">
+        mc_record_id,
+      </if>
+      <if test="mcRecordDate != null">
+        mc_record_date,
+      </if>
+      <if test="mcRecordSumnum != null">
+        mc_record_sumnum,
+      </if>
+      <if test="mcRecordRemain != null">
+        mc_record_remain,
+      </if>
+      <if test="teamId != null">
+        team_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mcRecordId != null">
+        #{mcRecordId,jdbcType=VARCHAR},
+      </if>
+      <if test="mcRecordDate != null">
+        #{mcRecordDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mcRecordSumnum != null">
+        #{mcRecordSumnum,jdbcType=INTEGER},
+      </if>
+      <if test="mcRecordRemain != null">
+        #{mcRecordRemain,jdbcType=INTEGER},
+      </if>
+      <if test="teamId != null">
+        #{teamId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.scb.pojo.McRecordExample" resultType="java.lang.Long">
+    select count(*) from mc_record
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update mc_record
+    <set>
+      <if test="record.mcRecordId != null">
+        mc_record_id = #{record.mcRecordId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mcRecordDate != null">
+        mc_record_date = #{record.mcRecordDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mcRecordSumnum != null">
+        mc_record_sumnum = #{record.mcRecordSumnum,jdbcType=INTEGER},
+      </if>
+      <if test="record.mcRecordRemain != null">
+        mc_record_remain = #{record.mcRecordRemain,jdbcType=INTEGER},
+      </if>
+      <if test="record.teamId != null">
+        team_id = #{record.teamId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update mc_record
+    set mc_record_id = #{record.mcRecordId,jdbcType=VARCHAR},
+      mc_record_date = #{record.mcRecordDate,jdbcType=TIMESTAMP},
+      mc_record_sumnum = #{record.mcRecordSumnum,jdbcType=INTEGER},
+      mc_record_remain = #{record.mcRecordRemain,jdbcType=INTEGER},
+      team_id = #{record.teamId,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.scb.pojo.McRecord">
+    update mc_record
+    <set>
+      <if test="mcRecordDate != null">
+        mc_record_date = #{mcRecordDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mcRecordSumnum != null">
+        mc_record_sumnum = #{mcRecordSumnum,jdbcType=INTEGER},
+      </if>
+      <if test="mcRecordRemain != null">
+        mc_record_remain = #{mcRecordRemain,jdbcType=INTEGER},
+      </if>
+      <if test="teamId != null">
+        team_id = #{teamId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mc_record_id = #{mcRecordId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.scb.pojo.McRecord">
+    update mc_record
+    set mc_record_date = #{mcRecordDate,jdbcType=TIMESTAMP},
+      mc_record_sumnum = #{mcRecordSumnum,jdbcType=INTEGER},
+      mc_record_remain = #{mcRecordRemain,jdbcType=INTEGER},
+      team_id = #{teamId,jdbcType=VARCHAR}
+    where mc_record_id = #{mcRecordId,jdbcType=VARCHAR}
+  </update>
+</mapper>
